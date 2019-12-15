@@ -88,16 +88,55 @@
                            <h4 class="shop-item-title font-alt">
                               <a href="#">${board.title}</a>
                            </h4>
-                           ${board.price}
+                           가격
                         </div>
                      </div>
                   </c:forEach>
                </div>
                
                <!-- 페이징 -->
-               <
-               
-               
+               <div class="row">
+               <div class="col-sm-12">
+               <div class="pagination font-alt">
+               <c:choose>
+					<c:when test="${(param.page+1)%4 ne 0}">
+						<fmt:parseNumber var="navPage" value="${param.page/4}" integerOnly="true"></fmt:parseNumber>
+					</c:when>
+					<c:otherwise>
+						<fmt:parseNumber var="navPage" value="${(param.page-1)/4}" integerOnly="true"></fmt:parseNumber>
+					</c:otherwise>
+				</c:choose>
+				
+				<c:choose>
+					<c:when test="${count%4 ne 0}">
+						<fmt:parseNumber var="totalPage" value="${count/4}" integerOnly="true"></fmt:parseNumber>
+					</c:when>
+					<c:otherwise>
+						<fmt:parseNumber var="totalPage" value="${(count-1)/4}" integerOnly="true"></fmt:parseNumber>
+					</c:otherwise>
+				</c:choose>
+							
+				<c:if test="${navPage ne 0}">
+					<a href="/test/page?page=${navPage*4}"><i class="fa fa-angle-left"></i></a>
+				</c:if>
+					<c:forEach var="i" begin="${navPage*4+1}" end="${navPage*4+4}">
+						<c:if test="${i le count}">
+							<c:choose>
+								<c:when test="${i-1 eq param.page}">
+									<a class="active" style="background-color: black;" href="/test/page?page=${i-1}">${i}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/test/page?page=${i-1}">${i}</a>
+								</c:otherwise>
+							</c:choose>
+							</c:if>
+					</c:forEach>
+					<c:if test="${navPage lt totalPage}">
+						<a href="/test/page?page=${navPage*4+4}"><i class="fa fa-angle-right"></i></a>
+					</c:if>
+                     </div>
+                  </div>
+               </div>
             </div>
          </section>
 

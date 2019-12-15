@@ -22,9 +22,6 @@ public class Message {
 	private int id; // 시퀀스
 	private String content; //메시지 내용
 	
-	@ManyToOne
-	@JoinColumn(name="SenderId")
-	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name="chatId")

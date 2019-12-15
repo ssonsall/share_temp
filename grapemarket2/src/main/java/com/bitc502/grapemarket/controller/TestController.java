@@ -99,32 +99,19 @@ public class TestController {
 	public String getlist(Model model,
 			@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC, size = 8) Pageable pageable) {
 		Page<Board> boards = bRepo.findAll(pageable);
-		
-		
-		if(boards.getNumber() > boards.getTotalPages()) {
-			System.out.println(pageable.isPaged());
+		if (pageable.getPageNumber() >= boards.getTotalPages()) {
+			return "redirect:/test/page?page=" + (boards.getTotalPages() - 1);
 		}
-		
-		System.out.println("전체 페이지수 : " + boards.getTotalPages());
-		System.out.println("현제 페이지에 표시할 데이터 수 : " + boards.getNumberOfElements());
-		System.out.println("다음 페이지 여부 : " + boards.hasNext());
-		
-		System.out.println(boards.isLast()+" is Last");
-		
-		
-//		if (pageable.getPageNumber() >= boards.getTotalPages()) {
-//			return "redirect:/test/page?page=" + (boards.getTotalPages() - 1);
-//		}
-//		int category = 4;
-//		int countRow = bRepo.countFindByCategory(category);
-//		int count = 0;
-//		if (countRow % 8 == 0) {
-//			count = countRow / 8;
-//		} else {
-//			count = (countRow / 8) + 1;
-//		}
-//		System.out.println("count >>" + count);
-//		model.addAttribute("count", count);
+		int category = 4;
+		int countRow = bRepo.countFindByCategory(category);
+		int count = 0;
+		if (countRow % 8 == 0) {
+			count = countRow / 8;
+		} else {
+			count = (countRow / 8) + 1;
+		}
+		System.out.println("count >>" + count);
+		model.addAttribute("count", count);
 		model.addAttribute("boards", boards.getContent());
 		return "/board/list";
 	}
