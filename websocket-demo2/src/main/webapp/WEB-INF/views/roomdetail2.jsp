@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,9 +7,17 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/dist/css/bootstrap.min.css"> -->
     <style>
       [v-cloak] {
           display: none;
@@ -36,11 +46,11 @@
         <div></div>
     </div>
     <!-- JavaScript -->
-    <script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
+<!--     <script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
     <script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
     <script src="/webjars/bootstrap/4.3.1/dist/js/bootstrap.min.js"></script>
     <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>
+    <script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script> -->
     <script>
         // websocket & stomp initialize
         var sock = new SockJS("/ws-stomp");
@@ -56,8 +66,8 @@
                 messages: []
             },
             created() {
-                this.roomId = localStorage.getItem('wschat.roomId');
-                this.sender = localStorage.getItem('wschat.sender');
+                this.roomId = "bd60da97-82f8-4a50-8381-d4d4a14a97a1";
+                this.sender = "anoi";
                 this.findRoom();
             },
             methods: {

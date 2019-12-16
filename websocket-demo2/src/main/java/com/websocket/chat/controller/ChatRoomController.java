@@ -40,6 +40,12 @@ public class ChatRoomController {
         model.addAttribute("roomId", roomId);
         return "roomdetail";
     }
+    
+    @GetMapping("/room/enter2/{roomId}")
+    public String roomDetail2(Model model, @PathVariable String roomId) {
+        model.addAttribute("roomId", roomId);
+        return "roomdetail2";
+    }
 
     @GetMapping("/room/{roomId}")
     @ResponseBody

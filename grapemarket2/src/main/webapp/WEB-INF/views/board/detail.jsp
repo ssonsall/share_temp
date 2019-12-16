@@ -128,15 +128,22 @@
 										value="1" max="40" min="1" required="required" />
 								</div> -->
 								<div class="col-sm-8">
-
-									<form action="/chat/chat" method="post">
-										<input type="hidden" name="board" value="${board.id}" /> 
-										<input type="hidden" name="buyerId" value="${principal.user.id}">
+									<!-- 채팅생성 -->
+									<form id="createChat">
+										<input type="hidden" name="board" value="${board.id}" /> <input
+											type="hidden" name="buyerId" value="${principal.user.id}">
 										<input type="hidden" name="sellerId" value="${board.user.id}">
-										<input type="submit" value="채팅으로 거래하기" />
 									</form>
+
+									<button onclick="createChat()" class="btn btn-round btn-d"
+										type="button">채팅으로 거래하기</button>
+
 								</div>
 							</div>
+
+
+
+
 
 						</div>
 					</div>
